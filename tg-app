@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Toggling Button with Counter</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        #colorButton {
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        #tapCounter {
+            margin-top: 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <button id="colorButton">Toggle Color</button>
+    <div id="tapCounter">Taps: 0</div>
+
+    <script>
+        const button = document.getElementById('colorButton');
+        const counterDisplay = document.getElementById('tapCounter');
+        const colors = {
+            blue: '#007bff',
+            green: '#28a745'
+        };
+        let isBlue = true;
+        let tapCount = 0;
+
+        button.addEventListener('click', () => {
+            // Toggle color
+            if (isBlue) {
+                button.style.backgroundColor = colors.green;
+            } else {
+                button.style.backgroundColor = colors.blue;
+            }
+            isBlue = !isBlue;
+
+            // Increment and update tap count
+            tapCount++;
+            counterDisplay.textContent = `Taps: ${tapCount}`;
+        });
+
+        // Initialize Telegram Mini App
+        window.Telegram.WebApp.ready();
+    </script>
+</body>
+</html>
